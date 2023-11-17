@@ -4450,6 +4450,7 @@ var draggableComponent = {
       var _this6 = this;
 
       if (Array.isArray(evt.items) && evt.items.length) {
+        helper["b" /* console */].log('onDrag Start', evt.items);
         this.multidragContexts = evt.items.map(function (e) {
           return _this6.getUnderlyingVm(e);
         });
@@ -4461,6 +4462,7 @@ var draggableComponent = {
           return e.element;
         });
         evt.item._underlying_vm_multidrag_ = this.clone(elements);
+        helper["b" /* console */].log('Multi elements :', elements);
       }
 
       this.context = this.getUnderlyingVm(evt.item);
@@ -4468,6 +4470,8 @@ var draggableComponent = {
       draggingElement = evt.item;
     },
     onDragAdd: function onDragAdd(evt) {
+      helper["b" /* console */].log('onDrag Add', evt);
+
       if (Array.isArray(evt.items) && evt.items.length) {
         this.onDragAddMulti(evt);
       } else {

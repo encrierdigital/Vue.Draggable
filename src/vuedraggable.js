@@ -473,11 +473,13 @@ const draggableComponent = {
 
     onDragStart(evt) {
       if (Array.isArray(evt.items) && evt.items.length) {
+        console.log('onDrag Start', evt.items)
         this.multidragContexts = evt.items.map(e => this.getUnderlyingVm(e));
         const elements = this.multidragContexts
           .sort(({ index: a }, { index: b }) => a - b)
           .map(e => e.element);
         evt.item._underlying_vm_multidrag_ = this.clone(elements);
+        console.log('Multi elements :', elements)
       }
       this.context = this.getUnderlyingVm(evt.item);
       evt.item._underlying_vm_ = this.clone(this.context.element);
@@ -485,6 +487,7 @@ const draggableComponent = {
     },
 
     onDragAdd(evt) {
+      console.log('onDrag Add', evt)
       if (Array.isArray(evt.items) && evt.items.length) {
         this.onDragAddMulti(evt);
       } else {
